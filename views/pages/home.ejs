@@ -3,14 +3,18 @@
 
 <%- include('../components/head'); %>
 
+
 	<body>
-		
+		<%- include('../components/header-nav'); %>
 			<main>
                 <h1>Welcome to MM MovieMatch</h1>
                 <h2>Find the perfect movie for you to watch!</h2>
+				<ul class="button">
+					<a href="/browse">Browse movies</a>
+					<a href="/add">Add a movie</a>
+				</ul>	
 			</main>
 			<%- include('../components/footer'); %>
-
 	</body>
 
 </html>

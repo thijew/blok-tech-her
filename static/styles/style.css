@@ -1,0 +1,13 @@
+/*color roots*/
+:root {
+    --bg-color: ##2D2D2A;
+    --main-color: #38423B;
+    --2main-color: #38423B;
+    --btn-color:  #3F5E5A;
+    --accent-color: #20FC8F;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: Arial, Helvetica, sans-serif;
+}

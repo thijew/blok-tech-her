@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+
+    <%- include('../components/head'); %>
+
+	<body>
+        
+        <%- include('../components/header-nav'); %>
+			<main>
+                <form action="/add" enctype="multipart/form-data" method="post">
+                    <label for="image">Upload image</label>
+                    <input type="file" name="image">
+
+                    <label for="director">Director</label>
+                    <input type="text" name="director">
+
+                    <label for="genre">Genre</label>
+                    <input type="text" name="genre">
+
+                    <label for="imdb">imdb rating</label>
+                    <input type="number" name="imdb" min="0" max="100">
+
+                    <button class="form-add-btn" type="submit">Submit</button>
+                    <p class="updateText">Your movie has been added to the database!</p>
+                </form>
+
+			</main>
+			<%- include('../components/footer'); %>
+	</body>
+
+</html>

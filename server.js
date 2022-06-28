@@ -2,6 +2,8 @@ const express = require('express')
 const app = express();
 const port = 5000;
 
+require('dotenv').config();
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
   })
@@ -10,33 +12,39 @@ app.listen(port, () => {
 app.set('view engine', 'ejs');
 app.set('views, view');
 
+////////////////////////////////ROUTES////////////////////////////////
 //Home page
-app.get('/', (req, res) => {
+app.get('', (req, res) => {
     res.render('pages/home');
   });
+//Add page
+app.get('/add', (req, res) => {
+    res.render('pages/add');
+});
+// browse page
+app.get('/browse', (req, res) => {
+    res.render('pages/browse');
+});
+
+const addMovie = require('./routes/add');
+app.use('/add', addMovie);
+
 
   ////////////////////////////////Mongo db////////////////////////////////
-
-// const { MongoClient} = require('mongodb');
-// const uri = "mongodb+srv://thijew:MMMovieMatch@blok-tech.2xkx5.mongodb.net/test";
-// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-// client.connect(err => {
-//   const collection = client.db("blok-tech").collection("MovieMatch");
-// console.log("succes");
-// console.log(err)
-  
-// });
-
-// connectDB().then(console.log('we have a connection to mongo!'));
-
 const { MongoClient } = require('mongodb');
-// or as an es module:
-// import { MongoClient } from 'mongodb'
-
-// Connection URL
-const url = "mongodb+srv://thijew:MMMovieMatch@blok-tech.2xkx5.mongodb.net/test";
-const client = new MongoClient(url);
-
+// Connection URI
+const uri = "mongodb+srv://thijew:MMMovieMatch@blok-tech.2xkx5.mongodb.net/test";
+// const uri =
+//     'mongodb+srv://' +
+//     process.env.DB_USERNAME +
+//     ':' +
+//     process.env.DB_PASS +
+//     '@' +
+//     process.env.DB_HOST +
+//     '/' +
+//     process.env.DB_NAME +
+//     '/?retryWrites=true&w=majority';
+const client = new MongoClient(uri);
 // Database Name
 const dbName = 'MovieMatch';
 
@@ -46,13 +54,16 @@ async function main() {
   console.log('Connected successfully to server');
   const db = client.db(dbName);
   const collection = db.collection('movies');
-
-  // the following code examples can be pasted here...
-
   return 'done.';
 }
-
 main()
   .then(console.log)
   .catch(console.error)
   .finally(() => client.close());
+  ////////////////////////////////Mongo db////////////////////////////////
+
+  // 404
+app.use((req, res) => {
+  res.status(404).render('pages/404');
+});
+
