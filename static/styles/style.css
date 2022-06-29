@@ -1,6 +1,6 @@
 /*color roots*/
 :root {
-    --bg-color: ##2D2D2A;
+    --bg-color: #2D2D2A;
     --main-color: #38423B;
     --2main-color: #38423B;
     --btn-color:  #3F5E5A;
@@ -10,4 +10,69 @@
 body {
     background-color: var(--bg-color);
     font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+/*NAV*/
+nav {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 1;
+    top: 0;
+}
+
+.navHeader {
+    padding: 1em;
+}
+
+.btn  {
+    background-color: var(--btn-color);
+    margin: 1em;
+    width: fit-content;
+    border-radius: 0.5em;
+    padding: 0.8em;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+}
+.btn:visited {
+    color: white;
+}
+
+.btn:hover {
+    background-color: var(--accent-color);
+}
+
+.addForm {
+    align-items: center;
+    align-content: center;
+    display: flex;
+    flex-direction: column;
+    margin: 2em;
+    width: 50%;
+}
+
+.addForm label {
+    margin: 0.5em;
+
+}
+
+
+footer {
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    top: 10;
+    right: 0;
+    left: 0;
+    margin: 0.5em;
+    
+    
 }

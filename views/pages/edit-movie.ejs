@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+
+    <%- include('../components/head'); %>
+
+	<body>
+        <main>
+        <%- include('../components/header-nav'); %>
+        <h2>Edit a movie</h2>
+        <form action="" enctype="multipart/form-data" method="post">
+            <label for="title">Title</label>
+            <input type="text" name="title" value="<%= movies.title %>">
+
+            <label for="director">Director</label>
+            <input type="text" name="director" value="<%= movies.title %>">
+
+            <label for="genre">Genre</label>
+            <input type="text" name="genre" value="<%= movies.title %>">
+
+            <label for="imdb">imdb rating</label>
+            <input type="number" name="imdb" min="0" max="10" value="<%= movies.title %>">
+
+            <button class="form-add-btn" type="submit" value="upload">Submit</button>
+            <p class="updateText">Your movie has been added to the database!</p>
+        </form>
+
+     </main>
+<%- include('../components/footer'); %>
+</body>

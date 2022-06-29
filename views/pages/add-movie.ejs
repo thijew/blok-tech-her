@@ -7,9 +7,9 @@
         
         <%- include('../components/header-nav'); %>
 			<main>
-                <form action="/add" enctype="multipart/form-data" method="post">
-                    <label for="image">Upload image</label>
-                    <input type="file" name="image">
+                <form class="addForm" action="add-movie" enctype="multipart/form-data" method="post">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" required>
 
                     <label for="director">Director</label>
                     <input type="text" name="director">
@@ -18,9 +18,9 @@
                     <input type="text" name="genre">
 
                     <label for="imdb">imdb rating</label>
-                    <input type="number" name="imdb" min="0" max="100">
+                    <input type="number" name="imdb" min="0" max="10">
 
-                    <button class="form-add-btn" type="submit">Submit</button>
+                    <button class="form-add-btn" type="submit" value="upload">Submit</button>
                     <p class="updateText">Your movie has been added to the database!</p>
                 </form>
 
