@@ -64,6 +64,10 @@ nav {
 
 }
 
+.updateText {
+    display: none;
+    color: #20FC8F;
+}
 
 footer {
     align-items: center;

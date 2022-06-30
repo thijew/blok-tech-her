@@ -7,23 +7,24 @@
         <main>
         <%- include('../components/header-nav'); %>
         <h2>Edit a movie</h2>
-        <form action="" enctype="multipart/form-data" method="post">
+        <form class="addForm"  action="/edit-movie" method="post">
             <label for="title">Title</label>
             <input type="text" name="title" value="<%= movies.title %>">
 
             <label for="director">Director</label>
-            <input type="text" name="director" value="<%= movies.title %>">
+            <input type="text" name="director" value="<%= movies.director %>">
 
             <label for="genre">Genre</label>
-            <input type="text" name="genre" value="<%= movies.title %>">
+            <input type="text" name="genre" value="<%= movies.genre %>">
 
             <label for="imdb">imdb rating</label>
-            <input type="number" name="imdb" min="0" max="10" value="<%= movies.title %>">
+            <input type="number" name="imdb" min="0" max="10" value="<%= movies.rating %>">
 
             <button class="form-add-btn" type="submit" value="upload">Submit</button>
-            <p class="updateText">Your movie has been added to the database!</p>
+            <p class="updateText">Your movie has been updated in the database!</p>
         </form>
 
      </main>
 <%- include('../components/footer'); %>
+<script src="/static/scripts/form-edit-btn.js"></script>
 </body>

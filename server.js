@@ -3,12 +3,14 @@ const app = express();
 const port = process.env.PORT || 5000;
 // const multer = require('multer');
 const path = require('path');
-// const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
 const dotenv = require('dotenv').config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
@@ -28,6 +30,7 @@ app.use('/static', express.static(path.join(__dirname, 'static')))
   const { ObjectId } = require("mongodb");
 
 const { error } = require('console');
+const { response } = require('express');
 
   let db;
   let movies;
@@ -70,18 +73,17 @@ app.get('/add-movie', (req, res) => {
 });
 // add movie to mongodb
 app.post('/add-movie', async (req, res) => {
-  console.log(req.body.title);
+  console.log(req.body);
   try {
     const addMovie = await movies.insertOne({
-      title: "TEST",
+      title: req.body.title,
       director: req.body.director,
       genre: req.body.genre,
       rating: req.body.rating,
       
     });
-    console.log(addMovie);
-    const insertedId = addMovie.insertedId;
-    res.send('hij doet het');
+    console.log(addMovie)
+    // res.render('pages/add-movie');
   } catch (err) {
     res.render('pages/add-movie', {error: error.message });
   }
@@ -93,13 +95,31 @@ app.get('/browse', (req, res) => {
 });
 
 //edit page
-app.get('/edit-movie', (req, res) => {
-    
-    const movie = db.collection('movies').findOne({},{});
-    res.render('pages/edit-movie', { movie });
-    
+app.get('/edit-movie', async (req, res) => {
+    const movies = await db.collection('movies').findOne({},{});
+    res.render('pages/edit-movie', { movies });
 });
 
+// app.post('/edit-movie', async (req, res) => {
+//   movies = await db.collection('movies').updateOne({"title": "Titanic"},{});
+//   res.render('pages/edit-movie', { movies });
+// });
+
+app.post('/edit-movie', async (req, res) => {
+      const movie = await db.collection('movies').updateOne({},{
+        $set:{
+          title: req.body.title,
+          director: req.body.director,
+          genre: req.body.genre,
+          rating: req.body.rating,
+        }
+      });
+      
+      console.log(movie);
+        });
+    
+  
+  
 
 
 
@@ -130,13 +150,4 @@ app.get('/edit-movie', (req, res) => {
 
 
 
-
-
-
-
-
-  // 404
-app.use((req, res) => {
-  res.status(404).render('pages/404');
-});
 
